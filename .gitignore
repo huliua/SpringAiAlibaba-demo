@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### custom ###
-aplication-local.yaml
-aplication-local.yml
+**/application-local.yaml
+**/application-local.yml
