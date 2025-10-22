@@ -13,6 +13,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>SpringAiAlibaba-demo</name>
     <description>SpringAiAlibaba-demo</description>
+    <modules>
+        <module>justChat</module>
+        <module>chatWithMemory</module>
+    </modules>
     <packaging>pom</packaging>
     <url/>
     <licenses>

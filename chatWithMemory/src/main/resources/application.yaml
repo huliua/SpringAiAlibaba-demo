@@ -1,10 +1,9 @@
 server:
-  port: 8080
+  port: 8081
   servlet:
     encoding:
       charset: UTF-8
       force: true
-
 spring:
   profiles:
     active: local
@@ -15,8 +14,13 @@ spring:
       chat:
         options:
           model: glm-4.5-flash
-
     dashscope:
       api-key: <anything>
+    chat:
+      client:
+        enabled: false # 默认关闭
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
 
 
