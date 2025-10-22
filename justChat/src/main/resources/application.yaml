@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  application:
+    name: SpringAiAlibaba
+  ai:
+    zhipuai:
+      api-key: 9f6a702c511542ec8acefd50b3ba0db1.AOqEKx1gpr1acK46
+      base-url: https://open.bigmodel.cn/api/paas/
+      chat:
+        options:
+          model: glm-4.5-flash
+
+    dashscope:
+      api-key: <anything>
+
+
