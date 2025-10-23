@@ -1,7 +1,11 @@
 package com.huliua.springaialibabademo.config;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
+import org.springframework.ai.chat.memory.repository.jdbc.JdbcChatMemoryRepository;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +18,22 @@ public class AiConfig {
             """;
 
     @Bean
-    public ChatClient chatClient(ChatModel zhiPuAiChatModel) {
+    public ChatClient chatClient(ChatModel zhiPuAiChatModel, ChatMemory chatMemory) {
         return ChatClient.builder(zhiPuAiChatModel)
-                .defaultAdvisors(new SimpleLoggerAdvisor())
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(), // 日志
+                        MessageChatMemoryAdvisor.builder(chatMemory).build() // 历史消息
+                )
                 .defaultSystem(PROMPT)
+                .build();
+    }
+
+
+    @Bean
+    public ChatMemory chatMemory(JdbcChatMemoryRepository chatMemoryRepository) {
+        return MessageWindowChatMemory.builder()
+                .chatMemoryRepository(chatMemoryRepository)
+                .maxMessages(10)
                 .build();
     }
 }
