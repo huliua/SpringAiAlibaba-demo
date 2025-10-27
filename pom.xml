@@ -16,6 +16,7 @@
     <modules>
         <module>justChat</module>
         <module>chatWithMemory</module>
+        <module>chatWithRag</module>
     </modules>
     <packaging>pom</packaging>
     <url/>

@@ -1,0 +1,51 @@
+server:
+  port: 8082
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ssa
+    username: root
+    password: <your password>
+    driver-class-name: org.postgresql.Driver
+  ai:
+    ollama:
+      embedding:
+        model: dengcao/Qwen3-Embedding-4B:Q4_K_M
+        options:
+          num-batch: 10
+      base-url: http://localhost:11434
+
+    zhipuai:
+      api-key: <your-api-key>
+      base-url: https://open.bigmodel.cn/api/paas/
+      chat:
+        options:
+          model: glm-4.5-flash
+
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always # 自动创建表
+
+    # 设置启动的嵌入模型
+    model:
+      embedding: ollama
+
+  mvc:
+    view:
+      prefix: /templates
+      suffix: .html
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+
+
+
