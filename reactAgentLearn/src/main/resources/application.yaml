@@ -1,0 +1,33 @@
+server:
+  port: 8083
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  profiles:
+    active: local
+  ai:
+    dashscope:
+      api-key: sk-a3e79f10177a4d1298e45f2de416d8f5
+    ollama:
+      chat:
+        model: qwen3.5:0.8b
+      embedding:
+        model: dengcao/Qwen3-Embedding-4B:Q4_K_M
+        options:
+          num-batch: 10
+      base-url: http://localhost:11434
+
+    # 设置启动的嵌入模型
+    model:
+      embedding: ollama
+      chat: ollama
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+
+
+
